@@ -1,0 +1,7 @@
+.cur{position:fixed;z-index:90;left:0;top:0;pointer-events:none;display:none;opacity:0;transition:opacity .4s}
+.cur.on{opacity:1}
+.d{position:absolute;width:8px;height:8px;margin:-4px;border-radius:50%;background:var(--red-hot)}
+.rg{position:absolute;width:44px;height:44px;margin:-22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);display:grid;place-items:center;font:800 9px var(--ui);letter-spacing:.16em;color:#fff;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s,border-color .3s}
+.cur.big .rg{width:92px;height:92px;margin:-46px;background:rgba(169,20,33,.85);border-color:transparent}
+.cur.hov .rg{width:64px;height:64px;margin:-32px;border-color:var(--red-hot)}
+@media (hover:hover) and (pointer:fine){.cur{display:block}}

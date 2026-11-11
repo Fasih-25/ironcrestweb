@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.next-visual/
+out/
+coverage/
+test-results/
+playwright-report/
+blob-report/
+*.tsbuildinfo
+next-env.d.ts
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+# the original zip is kept locally only; its contents live in design/site-reference
+ironcrest-site-reference.zip

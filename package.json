@@ -1,0 +1,53 @@
+{
+  "name": "ironcrest-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ironcrest marketing website",
+  "packageManager": "pnpm@10.34.4",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:export": "cross-env BUILD_TARGET=export next build",
+    "build:standalone": "cross-env BUILD_TARGET=standalone next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test --project=chromium-desktop --project=chromium-phone",
+    "e2e:all": "playwright test",
+    "visual": "playwright test -c playwright.visual.config.ts",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.0",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "22.20.5",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/serve-handler": "6.1.4",
+    "@vitejs/plugin-react": "6.3.0",
+    "cross-env": "10.1.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "jsdom": "31.0.0",
+    "pixelmatch": "8.0.0",
+    "pngjs": "7.0.0",
+    "serve-handler": "6.1.8",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

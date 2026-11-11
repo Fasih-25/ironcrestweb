@@ -1,0 +1,18 @@
+.loader{position:fixed;inset:0;z-index:100;display:none}
+/* Only shown when the head script marked the page as JS-capable. CSS failsafe (DECISIONS M3):
+   if hydration never happens the overlay still fades away on its own. */
+:global(.js) .loader{display:block;animation:ldFail .6s linear 3.6s forwards}
+.half{position:absolute;left:0;right:0;height:50.5%;background:var(--bg);transition:transform 1s cubic-bezier(.77,0,.18,1)}
+.ha{top:0}
+.hb{bottom:0}
+.open .ha{transform:translateY(-101%)}
+.open .hb{transform:translateY(101%)}
+.mid{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .35s}
+.open .mid{opacity:0}
+.lp{width:min(52vw,230px);aspect-ratio:1;animation:spin 3.2s linear infinite;color:var(--red-hot)}
+.num{position:absolute;font:700 clamp(2rem,6vw,3.4rem)/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.num small{font:800 11px var(--ui);letter-spacing:.25em;margin-left:6px;color:var(--red-text)}
+@keyframes ldFail{to{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){
+  :global(.js) .loader{display:none}
+}

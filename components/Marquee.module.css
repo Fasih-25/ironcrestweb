@@ -1,0 +1,10 @@
+.mq{padding-block:26px;border-block:1px solid var(--line);background:linear-gradient(90deg,rgba(101,10,21,.35),transparent 30%,transparent 70%,rgba(101,10,21,.35));overflow:clip;transform:rotate(-1.4deg);margin-block:30px;width:104%;margin-left:-2%}
+.track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq:hover .track{animation-play-state:paused}
+.track span{display:flex;align-items:center;gap:28px;padding-right:28px;font:600 clamp(1.8rem,4.2vw,3.6rem)/1 var(--display);color:var(--ink);white-space:nowrap}
+.track span em{font-style:italic;color:transparent;-webkit-text-stroke:1.4px var(--red-hot)}
+.track svg{width:.9em;height:.9em;color:var(--red-hot);animation:spin 8s linear infinite;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .track{animation:none}
+}

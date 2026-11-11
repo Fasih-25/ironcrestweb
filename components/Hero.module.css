@@ -1,0 +1,34 @@
+.hero{position:relative;padding-top:clamp(120px,15vw,190px);padding-bottom:clamp(60px,8vw,120px);overflow:clip;isolation:isolate}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);z-index:-2;will-change:transform}
+.o1{width:640px;height:640px;left:-180px;top:-120px;background:radial-gradient(circle,rgba(169,20,33,.75),transparent 65%)}
+.o2{width:560px;height:560px;right:-160px;top:220px;background:radial-gradient(circle,rgba(101,10,21,.9),transparent 65%)}
+.bigplate{position:absolute;z-index:-1;left:50%;top:-6%;width:min(1500px,170vw);aspect-ratio:1;transform:translateX(-50%) rotate(var(--rot,0deg));color:var(--red);opacity:.38;-webkit-mask-image:radial-gradient(circle,#000 38%,transparent 70%);mask-image:radial-gradient(circle,#000 38%,transparent 70%)}
+.spot{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px circle at var(--mx,50%) var(--my,20%),rgba(229,40,58,.16),transparent 60%)}
+.copy{text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-weight:700;font-size:13px;color:var(--silver)}
+.badge b{background:var(--red);color:#fff;border-radius:999px;padding:3px 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.h1{font-size:clamp(2.7rem,7.6vw,7.4rem);line-height:.96;font-weight:600}
+.ln{display:block;overflow:hidden;padding:.06em .1em .14em;margin:-.06em -.1em -.14em}
+.ln>span{display:block;transition:transform 1.2s var(--ease) calc(var(--i)*.13s + .15s)}
+.lede{text-align:center;margin-inline:auto;text-wrap:balance}
+.fade{transition:opacity 1s var(--ease) var(--t,.7s),transform 1s var(--ease) var(--t,.7s)}
+/* Hidden states only when JS is on (DECISIONS M3), revealed by body.ready, with a CSS-only failsafe. */
+:global(.js) .ln>span{transform:translateY(115%);animation:heroFailsafe 0s linear 3.6s forwards}
+:global(.js) .fade{opacity:0;transform:translateY(24px);animation:heroFailsafe 0s linear 3.6s forwards}
+:global(.ready) .ln>span,:global(.ready) .fade{opacity:1;transform:none}
+@keyframes heroFailsafe{to{opacity:1;transform:none}}
+.ctaRow{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.stage{margin-top:clamp(40px,6vw,80px);position:relative;perspective:1600px}
+.frame{position:relative;width:min(100%,1120px);margin-inline:auto;border-radius:22px;padding:10px;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);box-shadow:0 60px 140px rgba(169,20,33,.38),0 30px 80px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.2);transform-style:preserve-3d;will-change:transform;transform:rotateX(20deg) scale(.93)}
+.shot{display:block;border-radius:14px;width:100%;height:auto;aspect-ratio:1440/900;background:var(--charcoal)}
+.frame::after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.13) 48%,transparent 60%);background-size:260% 100%;background-position:calc(var(--sh,0)*1%) 0;mix-blend-mode:screen}
+.c1{left:-2%;top:12%}
+.c2{right:-1%;top:34%}
+.c3{left:5%;bottom:8%}
+:global(.chip) b.chipText{font-size:15px;font-family:var(--ui)}
+.sw{width:42px;height:24px;border-radius:99px;background:var(--red);position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+
+@media (prefers-reduced-motion:reduce){
+  :global(.js) .ln>span,:global(.js) .fade,.ln>span,.fade{transform:none;opacity:1}
+}
