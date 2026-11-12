@@ -1,0 +1,25 @@
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:46px}
+.head :global(.h2){margin-top:20px}
+.seg{display:inline-flex;padding:5px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+.seg button{border:0;background:transparent;padding:10px 20px;border-radius:999px;font-weight:800;font-size:14px;color:var(--silver);transition:background .35s,color .35s;position:relative}
+/* 44px hit area without changing the reference size (DECISIONS V2) */
+.seg button::after{content:"";position:absolute;inset:-2px -1px;border-radius:inherit}
+.seg button[aria-pressed="true"]{background:var(--red);color:#fff;box-shadow:0 6px 20px rgba(169,20,33,.5)}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.plan{position:relative;padding:34px 30px;border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.015));border:1px solid var(--line);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;flex-direction:column;gap:20px;transition:opacity .9s var(--ease),transform .6s var(--ease),border-color .4s;transform-style:preserve-3d}
+.plan:hover{border-color:rgba(255,107,118,.5)}
+.hot{background:linear-gradient(160deg,rgba(169,20,33,.55),rgba(101,10,21,.25) 60%,rgba(255,255,255,.02));border-color:rgba(255,107,118,.55);box-shadow:0 40px 100px rgba(169,20,33,.4)}
+.tag{position:absolute;top:-13px;left:30px;background:#fff;color:var(--red);font:800 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-radius:99px}
+.plan h3{font-size:1.9rem}
+.nm{font:800 12px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--red-text)}
+.price{font:600 clamp(2.4rem,4vw,3.4rem)/1 var(--display);color:#fff;font-variant-numeric:tabular-nums}
+.price small{display:block;font:600 13px var(--ui);color:var(--muted);margin-top:10px}
+.plan ul{list-style:none;margin:0;padding:18px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;flex:1}
+.plan li{display:flex;gap:11px;font-size:15px;color:var(--silver)}
+.plan li::before{content:"";width:16px;height:16px;flex:none;margin-top:4px;border-radius:50%;background:var(--red-hot) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M4.5 8.4l2.3 2.3 4.7-5' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/100% no-repeat}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .plan{background-color:rgba(24,22,22,.92)}
+}
+@media (max-width:1000px){
+  .plans{grid-template-columns:minmax(0,1fr)}
+}

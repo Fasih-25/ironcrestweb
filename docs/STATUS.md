@@ -1,5 +1,5 @@
-1. **S1 done** (foundation, tokens, fonts, Plate, motion controllers, loader, header + progress, hero, marquee): lint, typecheck, 17 unit, 16 e2e (Chromium desktop + phone), build all green.
-2. Visual vs reference (`pnpm visual`, max 1.5 %): header 0.00 %, hero ≤ 0.34 %, marquee ≤ 0.36 % at both 1440×900 and 390×844.
-3. Open: JS budget conflict (DECISIONS P1, framework alone ≈ 130 KB gzip); WebKit/Firefox e2e only run in CI so far (DECISIONS T2).
-4. Next: **S2: Plate Wheel** (`lib/wheel.ts` geometry + physics, six Floor illustrations, controls, autoplay, a11y, tests). Hook the wheel `dragging` flag into `lib/motion.ts`'s `motionFlags`.
-5. Waiting for "start milestone 2".
+1. **v1.0.0: S1–S5 done.** Full page: loader, header, hero, marquee, Plate Wheel, pinned story, stats, module demo, reel (5 approved screens), member app, pricing, FAQ, CTA + demo form/API, footer, SEO/OG/JSON-LD, CSP (nonce on Node, hashes on static export), cookie banner (analytics off by default), Hostinger deploy guide.
+2. Checks: lint and typecheck clean; 64 unit tests pass; 75 e2e tests pass on Chromium desktop + phone (7 viewport-specific skips; 2 tests needed their one local retry on a cold server); static export passes `pnpm test:export` with no CSP violations. Visual vs reference (max 1.5 %): every section passes; 3 have recorded exceptions (DECISIONS V1 stats, V4 phone app/FAQ anti-aliasing).
+3. JS: 165 KB gzip in total, of which ~34 KB is our code (the framework floor makes the prompt's 120 KB impossible; see DECISIONS P1).
+4. **Not run locally:** Firefox/WebKit e2e and Lighthouse CI. Both are wired into `.github/workflows/ci.yml` and run on the first push to GitHub; check that run. The film-grain overlay is the main paint cost (DECISIONS P2); if mobile Lighthouse misses 90, drop the grain under `(pointer: coarse)`.
+5. Before launch: set `NEXT_PUBLIC_SITE_URL`, pick delivery (`IRONCREST_API_URL` or Resend/SMTP), replace placeholder prices in `content/pricing.ts`, decide on `NEXT_PUBLIC_SHOW_REAL_UI`.

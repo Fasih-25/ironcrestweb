@@ -1,5 +1,8 @@
 import type { NavLink, Rich } from './types';
 
+/** Public origin for canonical URLs, sitemap and OG tags. */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://ironcrest.example').replace(/\/$/, '');
+
 export const site = {
   name: 'Ironcrest',
   wordmark: 'IRONCREST',

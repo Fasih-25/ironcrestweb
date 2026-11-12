@@ -20,14 +20,14 @@ export async function settle(page: Page, url: string): Promise<void> {
   await page.waitForTimeout(400);
 }
 
-async function scrollTo(page: Page, y: number): Promise<void> {
+async function scrollTo(page: Page, y: number, wait = 150): Promise<void> {
   await page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), y);
   await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
-  await page.waitForTimeout(150);
+  await page.waitForTimeout(wait);
 }
 
 /** Viewport-sized slices covering the whole element, top to bottom. */
-export async function captureSlices(page: Page, selector: string): Promise<Buffer[]> {
+export async function captureSlices(page: Page, selector: string, wait = 150): Promise<Buffer[]> {
   const vh = page.viewportSize()!.height;
   const vw = page.viewportSize()!.width;
   const box = await page.evaluate((sel) => {
@@ -39,7 +39,7 @@ export async function captureSlices(page: Page, selector: string): Promise<Buffe
   const out: Buffer[] = [];
   for (let off = 0; off < box.height - 1; off += vh) {
     const want = box.top + off;
-    await scrollTo(page, want);
+    await scrollTo(page, want, wait);
     const actual = await page.evaluate(() => window.scrollY);
     const y = Math.max(0, want - actual);
     const h = Math.min(vh - y, box.height - off);

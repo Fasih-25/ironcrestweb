@@ -1,0 +1,55 @@
+.sec{background:radial-gradient(900px 500px at 50% 62%,rgba(101,10,21,.5),transparent 70%)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(24px,4vw,50px)}
+.head :global(.h2){max-width:14ch;margin-top:20px}
+
+/* Geometry in CSS (DECISIONS W1): the container is the stage width, so SSR layout is exact. */
+.cq{container-type:inline-size}
+.stage{
+  --cw:clamp(250px,34cqw,430px);--ch:calc(var(--cw)*1.28);--R:calc(var(--cw)*2.7);
+  --bottom:calc(var(--ch) + 70px);--cy:calc(var(--bottom) + var(--R));--rp:calc(var(--R) - 26px);
+  --extra:250px;--px:0;--py:0;
+  position:relative;height:calc(var(--bottom) + var(--extra));overflow:clip;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none
+}
+@container (max-width:699.98px){.stage{--extra:190px}}
+.stage.drag{cursor:grabbing}
+.stage:focus-visible{outline-offset:-2px;border-radius:26px}
+.plate{position:absolute;left:50%;top:calc(var(--cy) - var(--rp));width:calc(var(--rp)*2);height:calc(var(--rp)*2);margin-left:calc(var(--rp)*-1);color:var(--red);will-change:transform;pointer-events:none;transform-origin:50% 50%}
+.spoke{position:absolute;left:50%;top:var(--cy);width:0;height:0;will-change:transform}
+.card{position:absolute;left:0;top:0;width:var(--cw);height:var(--ch);margin-left:calc(var(--cw)/-2);margin-top:calc(-1*(var(--R) + var(--ch)));transform-origin:50% 100%;border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:#120507;box-shadow:0 40px 90px rgba(0,0,0,.65);transition:border-color .5s,box-shadow .5s,filter .5s;will-change:transform,filter}
+.card.act{border-color:rgba(255,107,118,.65);box-shadow:0 0 0 1px rgba(229,40,58,.4),0 50px 120px rgba(169,20,33,.55)}
+.art{position:absolute;inset:0;clip-path:circle(150% at 50% 100%)}
+.art svg{width:100%;height:100%;display:block}
+.card.pop .art{animation:iris 1s var(--ease)}
+@keyframes iris{from{clip-path:circle(0% at 50% 62%)}to{clip-path:circle(150% at 50% 62%)}}
+.card :global(.lyr){transition:transform .5s var(--ease);transform:translate(calc(var(--px)*var(--d)*1px),calc(var(--py)*var(--d)*1px))}
+.meta{position:absolute;left:0;right:0;bottom:0;padding:60px 22px 20px;background:linear-gradient(0deg,rgba(10,10,10,.95),transparent);display:flex;flex-direction:column;gap:4px}
+.meta span{font:800 11px var(--ui);letter-spacing:.22em;color:var(--red-text)}
+.meta b{font:600 clamp(1.3rem,2.4vw,1.8rem)/1.1 var(--display);color:#fff}
+.glare{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);mix-blend-mode:screen;opacity:.7}
+.card :global(.sway){transform-origin:200px 0;animation:sway 3.4s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.card :global(.spin){animation:spin 2.4s linear infinite;transform-box:fill-box;transform-origin:center}
+.card :global(.steam){stroke-dasharray:14 16;animation:steam 2.2s linear infinite}
+@keyframes steam{to{stroke-dashoffset:-60}}
+.stage[data-offscreen] :global(.sway),.stage[data-offscreen] :global(.spin),.stage[data-offscreen] :global(.steam){animation-play-state:paused}
+
+.info{display:grid;grid-template-columns:1.1fr 1.3fr auto;gap:clamp(18px,4vw,60px);align-items:center;margin-top:clamp(18px,3vw,34px);padding-top:28px;border-top:1px solid var(--line)}
+.title{overflow:hidden;font:600 clamp(1.8rem,4vw,3.2rem)/1.05 var(--display);color:var(--ink)}
+.title span{display:block;transition:transform .8s var(--ease),opacity .6s}
+.title.out span{transform:translateY(100%);opacity:0;transition:none}
+.desc{transition:opacity .5s;color:var(--silver);max-width:46ch}
+.desc.out{opacity:0}
+.ctrl{display:flex;align-items:center;gap:16px}
+.count{font:700 1.1rem var(--display);color:var(--ink);font-variant-numeric:tabular-nums;min-width:68px;text-align:center}
+.count small{color:var(--muted);font-size:.9rem}
+.rb{width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);display:grid;place-items:center;transition:background .3s,transform .4s var(--ease),border-color .3s;padding:0}
+.rb:hover{background:var(--red);border-color:var(--red-2);transform:scale(1.08)}
+.rb svg{width:22px;height:22px}
+.dots{display:flex;gap:8px;margin-top:22px}
+.dot{width:30px;height:6px;border-radius:9px;border:0;background:rgba(255,255,255,.2);padding:0;position:relative;overflow:hidden;transition:width .5s var(--ease),background .3s}
+.dot.on{width:64px;background:rgba(255,255,255,.25)}
+.dot.on::after{content:"";position:absolute;inset:0;background:var(--red-hot);transform-origin:0 50%;transform:scaleX(var(--ap,0))}
+
+@media (max-width:1000px){
+  .info{grid-template-columns:1fr}
+}

@@ -5,6 +5,7 @@
 .half{position:absolute;left:0;right:0;height:50.5%;background:var(--bg);transition:transform 1s cubic-bezier(.77,0,.18,1)}
 .ha{top:0}
 .hb{bottom:0}
+.open{pointer-events:none}
 .open .ha{transform:translateY(-101%)}
 .open .hb{transform:translateY(101%)}
 .mid{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .35s}

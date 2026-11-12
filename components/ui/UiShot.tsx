@@ -7,6 +7,8 @@ interface UiShotProps {
   className?: string;
   priority?: boolean;
   lazy?: boolean;
+  /** Makes the placeholder's internal SVG ids unique when a screen appears more than once. */
+  uid?: string;
   /** Override the build flag (tests only). */
   real?: boolean;
 }
@@ -15,7 +17,7 @@ interface UiShotProps {
  * A product screen: the real WebP when NEXT_PUBLIC_SHOW_REAL_UI=true, otherwise an
  * illustrated placeholder that shows no real UI (DECISIONS I2).
  */
-export function UiShot({ screen, alt, className, priority, lazy, real = SHOW_REAL_UI }: UiShotProps) {
+export function UiShot({ screen, alt, className, priority, lazy, uid = '', real = SHOW_REAL_UI }: UiShotProps) {
   const m = screens[screen];
   if (real) {
     return (
@@ -41,7 +43,7 @@ export function UiShot({ screen, alt, className, priority, lazy, real = SHOW_REA
       data-placeholder={screen}
       preserveAspectRatio="xMidYMid slice"
     >
-      <Placeholder screen={screen} />
+      <Placeholder screen={screen} uid={`${screen}${uid}`} />
     </svg>
   );
 }
@@ -57,18 +59,18 @@ const panel = (x: number, y: number, w: number, h: number, key?: string | number
   <rect key={key} x={x} y={y} width={w} height={h} rx={18} fill="#fff" fillOpacity={0.045} stroke="#fff" strokeOpacity={0.09} />
 );
 
-function Placeholder({ screen }: { screen: ScreenKey }) {
+function Placeholder({ screen, uid }: { screen: ScreenKey; uid: string }) {
   if (screen === 'login') {
     return (
       <>
         <rect width="1440" height="900" fill="#0F0F0F" />
         <defs>
-          <linearGradient id="ph-login" x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id={`ph-login-${uid}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#650A15" />
             <stop offset="1" stopColor="#1a0508" />
           </linearGradient>
         </defs>
-        <rect width="720" height="900" fill="url(#ph-login)" />
+        <rect width="720" height="900" fill={`url(#ph-login-${uid})`} />
         {[300, 230, 160, 60].map((r, i) => (
           <circle key={r} cx="360" cy="450" r={r} fill="none" stroke={RH} strokeOpacity={0.15 + i * 0.12} strokeWidth={i === 3 ? 10 : 2} />
         ))}
@@ -185,12 +187,12 @@ function Placeholder({ screen }: { screen: ScreenKey }) {
     <>
       <rect width="1440" height="900" fill="#111" />
       <defs>
-        <linearGradient id={`ph-side-${screen}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={`ph-side-${uid}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#A91421" stopOpacity=".28" />
           <stop offset="1" stopColor="#A91421" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="232" height="900" fill={`url(#ph-side-${screen})`} />
+      <rect width="232" height="900" fill={`url(#ph-side-${uid})`} />
       <rect x="231" width="1" height="900" fill="#fff" fillOpacity=".08" />
       {bar(30, 34, 130, 14, W, 0.85)}
       {range(10).map((i) => bar(22, 90 + i * 48, 188, 34, i === 0 ? RH : '#fff', i === 0 ? 0.25 : 0.035, 10))}

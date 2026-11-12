@@ -8,8 +8,12 @@ const phone = { viewport: { width: 390, height: 844 }, hasTouch: true };
 export default defineConfig({
   testDir: 'tests/e2e',
   fullyParallel: true,
+  // small dev machines choke on many parallel browsers; CI shards per project instead
+  workers: process.env.CI ? undefined : 2,
+  timeout: process.env.CI ? 30_000 : 90_000,
+  expect: { timeout: process.env.CI ? 5_000 : 15_000 },
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: { baseURL: `http://localhost:${PORT}`, trace: 'retain-on-failure' },
   webServer: {

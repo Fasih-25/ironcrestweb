@@ -1,0 +1,16 @@
+.ftr{padding-block:60px 40px;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:30px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:700 17px/1 var(--display);letter-spacing:.2em;color:var(--ink)}
+.logo i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(160deg,var(--red-2),var(--maroon));box-shadow:0 6px 18px rgba(169,20,33,.5)}
+.logo svg{width:18px;height:18px}
+.tagline{margin-top:16px;max-width:30ch;color:var(--muted)}
+.ftr h2{margin:0 0 14px;font:800 12px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--red-text)}
+.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.ftr a{color:var(--silver)}
+.ftr a:hover{color:#fff}
+.fine{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+@media (max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){
+  .grid{grid-template-columns:1fr}
+  .logo{letter-spacing:.14em}
+}

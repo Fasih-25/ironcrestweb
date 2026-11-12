@@ -1,0 +1,18 @@
+.grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
+.grid :global(.h2){margin-top:20px}
+.q{border-bottom:1px solid var(--line)}
+.q:first-child{border-top:1px solid var(--line)}
+.q h3{margin:0;font:inherit;letter-spacing:normal;text-wrap:wrap;line-height:inherit}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;background:none;border:0;text-align:left;font:600 clamp(1.15rem,2vw,1.55rem)/1.25 var(--display);color:var(--ink)}
+.pm{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);position:relative;flex:none;transition:transform .5s var(--ease),background .3s}
+.pm::before,.pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:#fff;transform:translate(-50%,-50%)}
+.pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--ease)}
+.q[data-open="1"] .pm{background:var(--red);transform:rotate(180deg)}
+.q[data-open="1"] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.q[data-open="1"] .a{grid-template-rows:1fr}
+.a>div{overflow:hidden}
+.a p{padding:0 60px 26px 0;color:var(--muted);max-width:62ch}
+@media (max-width:1000px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+}

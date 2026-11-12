@@ -1,0 +1,30 @@
+.cta{position:relative;overflow:clip;isolation:isolate;text-align:center;background:radial-gradient(800px 400px at 50% 100%,rgba(169,20,33,.6),transparent 70%)}
+.bigplate{position:absolute;left:50%;top:50%;width:min(1100px,150vw);aspect-ratio:1;transform:translate(-50%,-50%) rotate(var(--rot,0deg));color:var(--red);opacity:.3;z-index:-1}
+.cta :global(.h2){font-size:clamp(3rem,10vw,9rem);line-height:.95;margin-top:26px}
+.cta :global(.lede){margin:26px auto 0;text-align:center}
+.form{margin:44px auto 0;width:min(100%,820px);padding:12px;border-radius:30px;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 40px 100px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;text-align:left}
+.form label{display:block;position:relative}
+.form input{width:100%;height:58px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.35);color:#fff;font:600 15px var(--ui);padding:20px 16px 0}
+.form input::placeholder{color:transparent}
+.form label span{position:absolute;left:17px;top:19px;font-weight:600;font-size:15px;line-height:1.6;color:var(--muted);pointer-events:none;transition:all .3s var(--ease)}
+.form input:focus+span,.form input:not(:placeholder-shown)+span{top:9px;font-size:11px;line-height:1.6;letter-spacing:.1em;text-transform:uppercase;color:var(--red-text)}
+.form input:focus{outline:0;border-color:var(--red-hot);box-shadow:0 0 0 4px rgba(229,40,58,.2)}
+.form input[aria-invalid="true"]{border-color:var(--red-text)}
+.form :global(.btn){height:58px;border-radius:18px}
+.form :global(.btn)[disabled]{opacity:.7;cursor:progress}
+/* honeypot: off-screen, never focusable */
+.hp{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+.turnstile{grid-column:1/-1;display:flex;justify-content:center}
+.turnstile:empty{display:none}
+.thanks{margin-top:18px;min-height:24px;font-weight:700;color:var(--red-text)}
+.done{margin:44px auto 0;width:min(100%,820px);padding:28px;border-radius:30px;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.2);font:600 clamp(1.2rem,2.4vw,1.6rem)/1.4 var(--display);color:var(--ink)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .form{background:rgba(24,22,22,.94)}
+}
+@media (max-width:1000px){
+  .form{grid-template-columns:1fr 1fr}
+  .form :global(.btn){grid-column:1/-1}
+}
+@media (max-width:620px){
+  .form{grid-template-columns:1fr}
+}

@@ -64,8 +64,8 @@ test.describe('S1 · top of page', () => {
     await expect(page.getByTestId('hero-frame')).toBeVisible();
     // default build hides the real UI behind an illustration (IP rule)
     if (process.env.NEXT_PUBLIC_SHOW_REAL_UI !== 'true') {
-      await expect(page.locator('[data-placeholder=dashboard]')).toBeVisible();
-      await expect(page.locator('img[src*="dashboard.webp"]')).toHaveCount(0);
+      await expect(page.getByTestId('hero-frame').locator('[data-placeholder=dashboard]')).toBeVisible();
+      await expect(page.locator('img[src*=".webp"]')).toHaveCount(0);
     }
   });
 

@@ -1,9 +1,11 @@
 node_modules/
 .next/
 .next-visual/
+.next-export/
 out/
 coverage/
 test-results/
+visual-results/
 playwright-report/
 blob-report/
 *.tsbuildinfo
