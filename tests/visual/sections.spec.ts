@@ -4,7 +4,8 @@ import { MAX_DIFF, REF_URL, SITE_URL, captureBox, captureSlices, diff, settle } 
 /** Sections built so far: [name, reference selector, site selector, mode]. Extend each milestone. */
 /** [name, reference selector, site selector, mode, settle ms, allowed diff override (must cite DECISIONS)] */
 const SECTIONS: Array<[string, string, string, 'box' | 'slices', number?, number?]> = [
-  ['header', '#hdr .hdr-in', '#hdr > div', 'box'],
+  // DECISIONS V5: darker, blurrier header glass by request
+  ['header', '#hdr .hdr-in', '#hdr > div', 'box', 150, 0.15],
   ['hero', '#hero', '#hero', 'slices'],
   ['marquee', '.mq', '[data-testid=marquee]', 'slices'],
   ['wheel', '#wheel', '#wheel', 'slices'],

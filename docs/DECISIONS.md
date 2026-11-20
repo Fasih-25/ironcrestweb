@@ -81,6 +81,7 @@ Rule of thumb: **the reference wins** over the build prompt; every deviation is 
 | V1 | **Stats numbers are big** (Playfair `clamp(2.6rem,6vw,5.4rem)`). The reference renders them at 13px because its `.stat span` rule also matches the counter `<span>` inside `<b>`. We scope that rule to `.stat > span`. The visual test allows 20 % for this section. | Reference CSS bug; its own `.stat b` rule and the prompt (§4.7 "Numbers count up") show the intent. |
 | V2 | Small tap-target fixes: pricing toggle buttons, "Reset to defaults" and module rows get `min-height: 44px` (1-2 px taller than the reference). | Prompt §5 (≥ 44 px). |
 | V4 | Phone `app` (slice 2) and `faq` (slice 1) differ by 2.55 % and 1.66 %. The diff images show only text anti-aliasing (identical layout, wrapping and colours, checked by eye). The visual test allows 3 % for these two sections. | Sub-pixel text positioning; not a layout difference. |
+| V5 | Header glass is darker and blurrier than the reference: a `rgba(12,10,11,.62)` tint under the same gradient, and `blur(32px) saturate(160%)` instead of `blur(20px) saturate(150%)`. The visual test allows 15 % for the header. | Owner request after launch: busy content (e.g. the demo form) showed through the menu. |
 | V3 | The demo form keeps the reference's three visible fields. The API also accepts an optional `phone` (prompt §8), but it isn't shown, so the four-column glass bar stays identical. | Reference layout wins; the field can be switched on later in `components/DemoForm.tsx`. |
 
 ## Accessibility
